@@ -8,7 +8,9 @@ $id=$_GET['id']??NULL;
 
 function get_type($list){
 	global $db;
+	$typ1[]=['type'=>0,'name'=>'全部'];
 	$rs=$db->queryList("select * from type");
+	$rs=array_merge($typ1,$rs);
 	$html_type.='
 		<li class="list-group-item">
 		<ul class="breadcrumb">

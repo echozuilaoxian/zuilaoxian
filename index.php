@@ -7,25 +7,27 @@ echo <<<api
 	<small>本站运行环境php70,Composer(php-curl-class,querylist4)<br/>大部分功能页面可以通过添加web_charset=json访问json数据</small>
 </div>
 <style>
-.alist{
-    display: block;
+.panel-body{
+	width: 100%;
+	padding:10px 10px;
+}
+.panel-body li{
+    display: inline-block;
     margin: 0 auto;
-	padding:5px 0;
+    width: 49%;
 	text-align: center;
 }
-.alist a{
+.panel-body li a{
     display: inline-block;
-    width: 48%;
+    width: 80%;
     color: #b131b9;
     text-align: center;
     padding: 6px 0;
-    /* border: 1px solid #b131b9; */
     box-shadow: inset 0px 0px 5px #ea88f1;
-    margin: 9px -1px 5px 4px;
-    /* border:0 #fff; */
+    margin: 9px -1px;
     border-radius: 4px;
 }
-.alist a:hover{
+.panel-body li a:hover{
 	font-weight: 300;
 	text-shadow: 0 0 1px #e69fea;
 }
@@ -38,14 +40,12 @@ echo <<<api
 			</span>
 		</div>
 		<div class="panel-body">
-			<div class="alist">
-				<a href="/dwz/">美文 <span class="glyphicon glyphicon-book"><span></a>
-				<a href="/rizhi/">日志</a>
-				<a href="/lizhi/">励志</a>
-				<a href="/ggs/">鬼故事</a>
-				<a href="/lssdjt/">历史上的今天</a>
-				<a href="/xs1/">小说阅读①</a>
-			</div>
+			<li><a href="/dwz/">美文 <span class="glyphicon glyphicon-book"><span></a></li>
+			<li><a href="/rizhi/">日志</a></li>
+			<li><a href="/lizhi/">励志</a></li>
+			<li><a href="/ggs/">鬼故事</a></li>
+			<li><a href="/lssdjt/">历史上的今天</a></li>
+			<li><a href="/xs1/">小说阅读①</a></li>
 		</div>
 		<!--div class="panel-footer"></div-->
 		<div id="collapse1" class="list-group panel-collapse collapse in">
@@ -59,16 +59,14 @@ echo <<<api
 			</span>
 		</div>
 		<div class="panel-body">
-			<div class="alist">
-				<a href="/haha">小视频</a>
-				<a href="/qqhead">QQ头像获取</a>
-				<a href="/enterdesk">漂亮美眉3</a>
-				<a href="/tu-tupianzj">美女图片</a>
-				<a href="/wallpaper">壁纸大全</a>
-				<a href="/m">音乐搜索</a>
-				<a href="/douyin">抖音解析</a>
-				<a href="/jianya">减压神器</a> 
-			</div>
+			<li><a href="/haha">小视频</a></li>
+			<li><a href="/qqhead">QQ头像获取</a></li>
+			<li><a href="/enterdesk">漂亮美眉3</a></li>
+			<li><a href="/tu-tupianzj">美女图片</a></li>
+			<li><a href="/wallpaper">壁纸大全</a></li>
+			<li><a href="/m">音乐搜索</a></li>
+			<li><a href="/douyin">抖音解析</a></li>
+			<li><a href="/jianya">减压神器</a></li>
 		</div>
 		<div id="collapse2" class="list-group panel-collapse collapse in">
 		</div>
@@ -81,16 +79,14 @@ echo <<<api
 			</span>
 		</div>
 		<div class="panel-body">
-			<div class="alist">
-				<a href="/duanxin">短信大全</a>
-				<a href="/xhy">歇后语</a>
-				<a href="/miyu">谜语大全</a>
-				<a href="/miyu2">谜语大全2</a>
-				<a href="/naojin">脑筋急转弯</a>
-				<a href="/chengyu">成语大全</a>
-				<a href="/pianfang">民间偏方</a>
-				<a href="/baike">百科问答</a>
-			</div>
+			<li><a href="/duanxin">短信大全</a></li>
+			<li><a href="/xhy">歇后语</a></li>
+			<li><a href="/miyu">谜语大全</a></li>
+			<li><a href="/miyu2">谜语大全2</a></li>
+			<li><a href="/naojin">脑筋急转弯</a></li>
+			<li><a href="/chengyu">成语大全</a></li>
+			<li><a href="/pianfang">民间偏方</a></li>
+			<li><a href="/baike">百科问答</a></li>
 		</div>
 		<div id="collapse3" class="list-group panel-collapse collapse in">
 		</div>
@@ -103,12 +99,10 @@ echo <<<api
 			</span>
 		</div>
 		<div class="panel-body">
-			<div class="alist">
-				<a href="/ewm">二维码制作 <span class="glyphicon glyphicon-qrcode"><span></a>
-				<a href="/wtp">文字转图片</a>
-				<a href="/kouzhao">给头像加个口罩</a>
-				<a href="/doutu">斗图表情大全装逼生成</a>
-			</div>
+			<li><a href="/ewm">二维码制作 <span class="glyphicon glyphicon-qrcode"><span></a></li>
+			<li><a href="/wtp">文字转图片</a></li>
+			<li><a href="/kouzhao">给头像加个口罩</a></li>
+			<li><a href="/doutu">斗图表情大全装逼生成</a></li>
 		</div>
 		<div id="collapse4" class="list-group panel-collapse collapse in">
 		</div>
