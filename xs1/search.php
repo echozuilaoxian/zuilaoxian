@@ -49,6 +49,7 @@ $html.= '<li class="list-group-item">';PHP_EOL;
 $html.= "搜索含有\"<b> $word </b>\"的小说";PHP_EOL;
 $html.= '</li>';PHP_EOL;
 $title=$word." 搜索结果";
+$apistr['msg']=['keyword'=>$word,'page'=>$page,'pagecount'=>$pagecount];
 foreach($data as $i => $row){
 	$id=$row['id'];
 	$booktitle=$row['book'];
@@ -59,6 +60,7 @@ foreach($data as $i => $row){
 	<li class="list-group-item">
 		'.$i.'.<a href="book.php?bookid='.$id.'"><big>'.$booktitle.'</big></a>(<small>'.$author.'</small>)
 	</li>';PHP_EOL;
+	$apistr['lists'][]=['id'=>$id,'title'=>$row['book'],'author'=>$row['zuozhe']];
 }
 $gopage="search.php?word=".$word."&";
 if ($searchid){$gopage.='searchid='.$searchid.'&';}
@@ -108,8 +110,8 @@ $(function(){
 		</div>
 </li>
 api;
-echo $api->head($title).$type_h.$search.$html.$api->end();
-
+$html=$api->head($title).$type_h.$search.$html.$api->end();
+echo $web_charset?$api->json($apistr):$html;
 fastcgi_finish_request();
 if ($searchid && $page<$pagecount){
 	$url2="https://www.9txs.com/search/{$searchid}/".($page+1).".html";

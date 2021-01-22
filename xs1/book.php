@@ -33,6 +33,7 @@ $data2 = QueryList::html($datahtml)
 ->queryData();
 
 //////////
+$apistr['msg']=['title'=>$data['book'],'author'=>$data['zuozhe']];
 $booktitle=$data['book'];
 $zuozhe=$data['zuozhe'];
 $title=$booktitle." 章节目录";
@@ -64,6 +65,7 @@ foreach ($data2 as $i => $row){
 	$html.= '
 	<a class="list-group-item" href="view.php?bookid='.$bookid.'&viewid='.$row['id'].'">'.$row['title'].'</a>
 	';PHP_EOL;
+	$apistr['lists'][]=['id'=>$row['id'],'title'=>$row['title']];
 }
 /*搜索*/
 $search=<<<api
@@ -105,4 +107,5 @@ $(function(){
 		</div>
 </li>
 api;
-echo $api->head($title).$search.$html.$api->end();
+$html=$api->head($title).$search.$html.$api->end();
+echo $web_charset?$api->json($apistr):$html;

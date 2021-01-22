@@ -1,81 +1,85 @@
 <?php
 require "../config.php";
+use GuzzleHttp\Psr7\Response;
 use QL\QueryList;
-
 $id=$_GET['id']??NULL;
 if (!$id){exit($api->msg("id错误","id错误","danger"));}
 $url="https://www.tupianzj.com/".base64_decode($id);
-$datahtml = $api->GetHtml($url,$huan_path,120);
-$ql=QueryList::html($datahtml);
-$data['title']=$ql->find('h1:last')->text();
-$data['img'][]=$ql->find('#bigpic img')->src;
-
-$datahtml=iconv("GB2312","UTF-8//IGNORE",$datahtml);
-$page_m=$api->cutstr($datahtml,'<a>共','页');
-
-/*并发请求所有图片页面*/
-use \Curl\MultiCurl;
-$multi_curl = new MultiCurl();
-$multi_curl->success(function ($instance)use($huan_path,$data){
-	$huan_file=$huan_path.'/'.base64_encode($instance->url);
-	file_put_contents($huan_file,$instance->response);
-});
-for ($i=2;$i<=$page_m;$i++){
-	$url_=str_replace('.html','_'.$i.'.html',$url);
-	$huan_file=$huan_path.'/'.base64_encode($url_);
-	if (!file_exists($huan_file)){$multi_curl->addGet($url_);}
-}
-$multi_curl->start();
-
-
-for ($i=2;$i<=$page_m;$i++){
-	$url_=str_replace('.html','_'.$i.'.html',$url);
-	$huan_file=$huan_path.'/'.base64_encode($url_);
-	$data['img'][]=(new QueryList)->html(@file_get_contents($huan_file))->find('#bigpic img')->src;
-}
-
-echo $api->head($data['title']);
-echo <<<api
-		<ul class="breadcrumb">
-			<li><a href="/">网站首页</a></li>
-			<li><a href="./">美女图片</a></li>
-			<li>{$data['title']}</li>
-		</ul>
-api;
-echo "<h3>{$data['title']}</h3>\n<hr>\n";
-
-echo '
-<link href="fsgallery.css" rel="stylesheet" charset="utf-8">
-<script src="fs_forse.js" charset="utf-8"></script>
-<style>
-.thumbnails{
-	width: 100%;
-    margin: 0 auto;
-    padding: 0;
+	$datahtml = QueryList::get($url,null,[
+		'cache' => $huan_path,
+		'cache_ttl' => 60*60*12
+		])
+	->getHtml();
+	$rules=array(
+		"img"=>array('#bigpic img','src'),
+		"pages"=>array('.pages li:eq(0)','text'),
+		"title"=>array('h1:last','text')
+	);
+	$range='';
+	$data = QueryList::html($datahtml)
+		->rules($rules)
+		->range($range)
+		->encoding('UTF-8')
+		->removeHead()
+		->queryData()[0];
+	$title=$data['title'];
+	$page=$api->cutstr($data['pages'],'共','页');
+	$img[]=$data['img'];
+	for ($i=2;$i<=$page;$i++){
+		$urls[]=str_replace('.html','_'.$i.'.html',$url);
 	}
-.span3{
-    width: 48%;
-    display: inline-block;
-	}
-.span3 a img{
-	width:100%;
-	max-width:400px;
-	}
-</style>
-	<ul class="thumbnails" id="gallery">
-';		
-		foreach($data['img'] as $row){
+	$rules=array(
+		"img"=>array('#bigpic img','src')
+	);
+	$qldata=QueryList::rules($rules)
+		->range($range)
+		->multiGet($urls)
+		// 设置并发数为2
+		->concurrency(2)
+		// 设置GuzzleHttp的一些其他选项
+		->withOptions([
+			'timeout' => 60
+		])
+		// 设置HTTP Header
+		->withHeaders([
+			'User-Agent' => 'QueryList'
+		])
+		// HTTP success回调函数
+		->success(function (QueryList $ql, Response $response, $index){
+			global $img;
+			$img[]= $ql->queryData()[0]['img'];
+		})
+		// HTTP error回调函数
+		->error(function (QueryList $ql, $reason, $index){
+			// ...
+		})
+		->send();
+
+
+	$html.=$api->head($title);
+	$html.='
+			<ul class="breadcrumb">
+				<li><a href="/">网站首页</a></li>
+				<li><a href="./">美女图片</a></li>
+				<li>'.$title.'</li>
+			</ul>
+	';
+	$html.="<h3>{$title}</h3>\n<hr>\n";
+
+	$html.='
+		<ul class="thumbnails" id="gallery">
+	';		
+		foreach($img as $row){
 			if ($row){
 				if (stripos($row,"http://")!==0){$row="{$row}";}
-				echo '
-				<li class="span3"><a href="'.$row.'"><img alt="" src="'.$row.'"></a></li>
+				$html.='
+				<li class="span3"><img alt="" src="'.$row.'"></li>
 				';
 			}
 		}
-echo '
-	</ul>
-
-';
-
-
-echo $api->end();
+	$html.='
+		</ul>
+	';
+$apistr['msg']=['title'=>$title,'count'=>$page];
+$apistr['img']=$img;
+echo $web_charset?$api->json($apistr):$html.$api->end();

@@ -62,8 +62,9 @@ $html.='
 <li class="list-group-item">'.$content.'</li>
 '.$pager.'
 ';PHP_EOL;
-
-echo $api->head($title).$html.$api->end();
+$apistr['msg']=['book'=>$booktitle,'title'=>$viewtitle,'content'=>$content,'next'=>$down,'prev'=>$up];
+$html=$api->head($title).$html.$api->end();
+echo $web_charset?$api->json($apistr):$html;
 fastcgi_finish_request();
 if ($down){
 	$url2="https://www.9txs.com/book/{$bookid}/{$down}.html";

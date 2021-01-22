@@ -1,7 +1,7 @@
 <?php
-require_once("../config.php");
+require '../config.php';
 use QL\QueryList;
-$list=isset($_GET['id'])?$_GET['id']:1;
+$list=$_GET['list']??1;
 $url="https://www.9txs.com/library/0_{$list}_0_{$page}.html";
 $datahtml = QueryList::get($url,null,[
 	'cache' => $huan_path,
@@ -42,12 +42,25 @@ $data = QueryList::html($datahtml)
 			$x['id']=explode(".",$x['id'])[0];
 			return $x;
 		});
-/*获取标题*/
-$title=QueryList::html($datahtml)->find('.filter li:first .on')->text();
+$title='';
+/*输出分类*/
+$type_h="<ul class=\"breadcrumb\">\n";
+foreach($datatype as $row){
+	$name=$row['name'];
+		if ($row['id']==$list) {
+			$name='<font color="red">'.$name.'</font>';
+			$title=$row['name'];
+		}
+	$type_h.="<li><a href=\"?list={$row['id']}\">{$name}</a></li>\n";
+	$apistr['type'][]=['id'=>$row['id'],'name'=>$row['name']];
+}
+$type_h.="</ul>\n";
+//$title=QueryList::html($datahtml)->find('.filter li:first .on')->text();
 /*获取总页数*/
 $pagecount=QueryList::html($datahtml)->find('.page>a:last')->href;
 $pagecount=explode("_",$pagecount)[3];
 $pagecount=explode(".",$pagecount)[0];
+$apistr['msg']=['title'=>$title,'page'=>$page,'pagecount'=>$pagecount];
 /*循环列表*/
 foreach($data as $i => $row){
 	$id=$row['id'];
@@ -59,15 +72,11 @@ foreach($data as $i => $row){
 	<li class="list-group-item">
 		'.$i.'.<a href="book.php?bookid='.$id.'"><big>'.$booktitle.'</big></a>(<small>'.$author.'</small>)
 	</li>';PHP_EOL;
+	$apistr['lists'][]=['id'=>$id,'title'=>$booktitle,'author'=>$author];
 }
 $gopage="?id=".$list."&";
 $html.=$api->api_page($pagecount,$page,$gopage);
-/*输出分类*/
-$type_h="<ul class=\"breadcrumb\">\n";
-foreach($datatype as $row){
-	$type_h.="<li><a href=\"?id={$row['id']}\">{$row['name']}</a></li>\n";
-}
-$type_h.="</ul>\n";
+
 /*搜索*/
 $search=<<<api
 
@@ -108,4 +117,6 @@ $(function(){
 		</div>
 </li>
 api;
-echo $api->head($title).$type_h.$search.$html.$api->end();
+$html=$api->head($title).$type_h.$search.$html.$api->end();
+
+echo $web_charset?$api->json($apistr):$html;

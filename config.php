@@ -39,14 +39,9 @@ $query_string=($_SERVER['QUERY_STRING'])?"&".urldecode($_SERVER["QUERY_STRING"])
 $thisurl="{$http_type}{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}?";
 /**/
 $web_charset=$_GET['web_charset']??NULL;
-
-use \Curl\Curl;
-$curl = new Curl();
-$curl->setHeader('Expect', '');
 //类开始
 class api{
 	public $MyClassPath;
-	public $nowtime;
 	//public $web_charset;
 	/*顶部*/
 	function head($web_title){
@@ -214,59 +209,10 @@ class api{
 		if (!mk_dir(dirname($dir),$mode)) return false;
 		return @mkdir($dir,$mode);
 	}
-	
-	
-	function GetHtml($url,$huan='',$huan_time=0,$postdata=''){
-		global $curl,$huan_m,$ua;
-		//$curl->setUserAgent($ua_win);
-		$curl->setTimeout(60);
-		//$curl->setReferrer($url);
-		$GetHtml=NULL;
-		if ($huan){//如果指定路径
-			//print_r('此次进行缓存:');
-			$huan_url=base64_encode($url);
-			if ($postdata){$huan_url=base64_encode($url).base64_encode(implode("&", $postdata));}
-			$huan_file=$huan.'/'.$huan_url;
-			
-			$cache=true;//设置缓存可用
-			//print_r('<br/>缓存文件'.$huan_file);
-			if (!file_exists($huan_file)){
-				//print_r('<br/>缓存文件不存在,将进行下载操作');
-				$cache=false;
-			}else{
-				//print_r('<br/>缓存文件存在，将进行超时检查');
-				$huan_mtime=filemtime($huan_file);
-				if (time()-$huan_mtime>$huan_time*60){
-					//print_r('<br/>缓存文件超时');
-					$cache=false;
-				}
-			}
-			if (!$cache){
-				if ($postdata) {
-					$GetHtml=$curl->post($url,$postdata);
-				}else{
-					$GetHtml=$curl->get($url);
-				}
-				if ($GetHtml){file_put_contents($huan_file,$GetHtml);}
-				//$curl->download($url,$huan_file);
-			}else{
-				$GetHtml=file_get_contents($huan_file);
-			}
-		}else{
-			//print_r('此次无缓存');
-			if ($postdata) {
-				$GetHtml=$curl->post($url,$postdata);
-			}else{
-				$GetHtml=$curl->get($url);
-			}
-		}
-		//$curl->close();
-		return $GetHtml;
-	}
 	/*输出json数据并设置header*/
 	function json($str,$json_str=''){
 		header("Content-type: application/json; charset=utf-8");
-		if (!$json_str){
+		if ($json_str){
 			return json_encode($str,JSON_UNESCAPED_UNICODE);
 		}else{
 			return json_encode($str);
@@ -288,5 +234,4 @@ class api{
 $api=new api();
 $api->mk_dir($huan_path);
 $api->MyClassPath=MyClass;
-$api->nowtime=time();
 			
