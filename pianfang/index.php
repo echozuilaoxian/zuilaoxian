@@ -32,7 +32,7 @@ $gopage="?word=".$word."&";
 }else{
 $gopage="?";
 }
-$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 for($i=0;$i<$api_array['msg']['list'];$i++){
 $html.=<<<api
@@ -44,7 +44,7 @@ $html.=<<<api
 
 api;
 }
-$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 $html.=$api->end();
 echo $web_charset?$api->json($api_array):$html;

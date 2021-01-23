@@ -63,7 +63,7 @@ if ($word){
 if ($type){
 	$gopage="?type=".$type."&";
 }
-$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 $api_array['msg']=array("name"=>"谜语大全2","count"=>$count,"pageall"=>$pagecount,"page"=>$page,"type"=>$type,"list"=>count($result),"keyword"=>$word);
 	foreach($result as $i =>$row){
@@ -81,7 +81,7 @@ $html.=<<<api
 
 api;
 	}
-$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 $html.=<<<api
 

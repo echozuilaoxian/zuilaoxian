@@ -79,7 +79,7 @@ $result=$db->queryList(str_replace('count(*)','*',$count_sql)." LIMIT $zhizhen,$
 $apistr['msg']=array("name"=>$title,"count"=>$count,"pageall"=>$pagecount,"page"=>$page,"keyword"=>$word);
 
 $gopage=$word?"?word=".$word."&":"?";
-$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 foreach($result as $row){
 	$apistr['list'][]=["id"=>$row['tmxh'],"title"=>$row["tmnr"],"tmlx"=>$row["tmlx"],"kind"=>$row['kind'],"tmda1"=>$row['tmda1'],"tmda2"=>$row['tmda2'],"tmda3"=>$row['tmda3'],"tmda4"=>$row['tmda4'],"tmda5"=>$row['tmda5'],"tmda6"=>$row['tmda6'],"tmda"=>$row['tmda']];
 	$tmda='';
@@ -108,7 +108,7 @@ foreach($result as $row){
 
 	';
 }
-$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 
 $html.='

@@ -1,5 +1,5 @@
 <?php
-require_once("../config.php");
+require '../config.php';
 
 $db_pdo=new mysqlpdo($mysql_config);
 $types=array(
@@ -104,7 +104,7 @@ if (!$id){
 	$zhizhen=$pagesize*($page-1);
 	$result=$db_pdo->querylists($sql." LIMIT $zhizhen,$pagesize");
 		$str['msg']=array("count"=>$count,"pagecount"=>$pagecount,"pagesize"=>$pagesize,"page"=>$page,"list"=>$list);
-	$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 	if ($word){
 		$html.= '
 			<li class="list-group-item">
@@ -124,7 +124,7 @@ if (!$id){
 	';
 	}
 
-	$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 }
 
 if ($id and is_numeric($id)){

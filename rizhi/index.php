@@ -118,7 +118,7 @@ if (!$id){
 	$result=$db->queryList($sql." LIMIT $zhizhen,$pagesize");
 	$str['msg']=array("count"=>$count,"pagecount"=>$pagecount,"pagesize"=>$pagesize,"page"=>$page,"list"=>$list,"keyword"=>$word);
 		
-	$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 	if ($word){
 	$html.= '
 		<li class="list-group-item">
@@ -137,7 +137,7 @@ if (!$id){
 		</li>
 	';
 	}
-	$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 }
 if ($id and is_numeric($id)){
 	$rs=$db->queryrow("select * from content where id=".$id);

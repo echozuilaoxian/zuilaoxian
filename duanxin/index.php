@@ -11,8 +11,6 @@ $html=$api->head("短信大全");
 $html.=<<<api
 
 <li class="list-group-item">
-json页面:<a href="{$thisurl}web_charset=json{$query_string}">{$thisurl}web_charset=json{$query_string}</a>
-<hr/>
 		<form method="get" action="?" class="bs-example bs-example-form" role="form">
 			<div class="row">
 				<div class="col-lg-6">
@@ -29,8 +27,6 @@ json页面:<a href="{$thisurl}web_charset=json{$query_string}">{$thisurl}web_cha
 				</div>
 			</div>
 		</form>
-
-<hr/>
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -138,7 +134,7 @@ if ($page>$pagecount){$page=$pagecount;}
 $zhizhen=$pagesize*($page-1);
 $result=$db->queryList($sql." LIMIT ".$zhizhen.",".$pagesize);
 //分页
-$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 $api_array['msg']=array("name"=>"短信大全","count"=>$count,"pageall"=>$pagecount,"page"=>$page,"type"=>$type,"list"=>count($result),"keyword"=>$word);
 //循环集合
@@ -156,5 +152,5 @@ api;
 
 
 //分页
-$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 echo  $web_charset?$api->json($api_array):$html.$api->end();

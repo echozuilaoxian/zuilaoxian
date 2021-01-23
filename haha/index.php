@@ -88,7 +88,7 @@ $html.=<<<api
 api;
 
 if ($str["msg"]){
-$html.=$api->page_z(0,$str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
+$html.=$api->page($str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
 	foreach ($str["list"] as $i => $row){
 $html.=<<<api
 
@@ -105,7 +105,7 @@ $html.=<<<api
 
 api;
 }
-$html.=$api->page_z(1,$str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
+$html.=$api->page($str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
 
 }else{
 	$html.="内容出错";

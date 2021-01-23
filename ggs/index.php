@@ -68,7 +68,7 @@ if (!$id){
 	if ($word){$gopage="?word=".$word."&";}
 	if ($list){$gopage="?list=".$list."&";}
 	if ($list && $word){$gopage="?list=".$list."&word=".$word."&";}
-	$html.=$api->page_z(0,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 	$str['msg']=array("name"=>"鬼故事","count"=>$count,"pageall"=>$pagecount,"page"=>$page,"type"=>$list,"list"=>count($result),"keyword"=>$word);
 	if ($word){
 		$html.= '
@@ -85,7 +85,7 @@ if (!$id){
 			<a href="?id='.$row['id'].'">'.$row['id'].'.'.$row["title"].'</a>
 		</li>';
 	}
-	$html.=$api->page_z(1,$count,$pagecount,$pagesize,$page,$gopage);
+	$html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 
 }
 if ($id and is_numeric($id)){

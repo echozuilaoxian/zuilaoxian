@@ -135,37 +135,50 @@ class api{
 			}
 		return $filetimes;
 	}
-	/*分页*/
-	function page_z($str,$count,$pagecount,$pagesize,$page,$gopage){
-	$page_z="";
-	if ($pagecount>1) {
-		$page_z.="<li class=\"list-group-item\">\n<ul class=\"pager\">\n";
-	if ($str==1){//<div class="well well-sm">list-group-item
-		$page_z.="\n<div class=\"well well-sm\">\n<center>\n<form method=\"get\" action=\"?\">\n";
-		$page_z.=$page."/".$pagecount."页 每页".$pagesize." 共".$count."\n";
-			$arr = explode('&', str_replace("?","",$gopage));
-			foreach ($arr as $k => $v) {
-				$arr1 = explode('=', $v);
-				if ($arr1[0] and $arr1[0]!="page" and $arr1[0]!="?" and $arr1[1]){$page_z.="<input name=\"".$arr1[0]."\" type=\"hidden\" value=\"".$arr1[1]."\">\n";}
-			}
-		$page_z.="<input name=\"page\" type=\"text\" value=\"\" size=\"2\">\n";
-		$page_z.="<input type=\"submit\" value=\"确定\">\n</form>\n</center>\n</div>\n";
-	}
-
+	/*分页1,正常分页，传入总数量，总页数，当前页，链接*/
+	function page($count,$pagecount,$pagesize,$page,$gopage,$str=''){
+		$pages="";
+		if ($pagecount<1) return;
+		$pages.='<li class="list-group-item">
+				<ul class="pagination">';
 		if ($page>1) {
-			$page_z.="<li class=\"previous\"><a href=\"".$gopage."page=1\"><<</a></li>\n<li class=\"\"><a href=\"".$gopage."page=".($page-1)."\"><</a></li>\n";
+			$pages.='
+				<li class="home"><a href="'.$gopage.'page=1">首页</a></li>
+				<li class="previous"><a href="'.$gopage.'page='.($page-1).'">上一页</a></li>';
 		}else{
-			$page_z.="<li class=\"previous disabled\"><a><<</a></li>\n<li class=\" disabled\"><a><</a></li>\n";
+			$pages.='
+					<li class="home disabled"><a>首页</a></li>
+					<li class="previous disabled"><a>上一页</a></li>';
 		}
-		if($page>=1){$page_z.="<li class=\"disabled\"><a><small>".$page."/".$pagecount."</small></a></li>\r\n";}
+		if($page>=1){
+			$pages.='
+					<li class="gopage disabled"><a><small>'.$page.'/'.$pagecount.'(共'.$count.')</small></a></li>';
+		}
 		if ($page<$pagecount) {
-			$page_z.="<li class=\"\"><a href=\"".$gopage."page=".($page+1)."\">></a></li>\n<li class=\"next\"><a href=\"".$gopage."page=".$pagecount."\">>></a></li>\n";
+			$pages.='
+					<li class="next"><a href="'.$gopage.'page='.($page+1).'">下一页</a></li>
+					<li class="last"><a href="'.$gopage.'page='.$pagecount.'">尾页</a></li>';
 		}else{
-			$page_z.="<li class=\" disabled\"><a>></a></li>\n<li class=\"next disabled\"><a>>></a></li>\n"; 
+			$pages.='
+					<li class="next disabled"><a>下一页</a></li>
+					<li class="last disabled"><a>尾页</a></li>'; 
 		}
-		$page_z.="</ul>\n</li>\n";
-	}
-	return $page_z;
+		$pages.='
+				</ul>
+			</li>
+			';
+		if ($str){
+			$pages.="\n<div class=\"well well-sm\">\n<center>\n<form method=\"get\" action=\"?\">\n";
+			$pages.=$page."/".$pagecount."页 每页".$pagesize." 共".$count."\n";
+				$arr = explode('&', str_replace("?","",$gopage));
+				foreach ($arr as $k => $v) {
+					$arr1 = explode('=', $v);
+					if ($arr1[0] and $arr1[0]!="page" and $arr1[0]!="?" and $arr1[1]){$page.="<input name=\"".$arr1[0]."\" type=\"hidden\" value=\"".$arr1[1]."\">\n";}
+				}
+			$pages.="<input name=\"page\" type=\"text\" value=\"\" size=\"2\">\n";
+			$pages.="<input type=\"submit\" value=\"确定\">\n</form>\n</center>\n</div>\n";
+		}
+		return $pages;
 	}
 	/*分页*/
 	function api_page($count=0,$page=0,$gopage="?"){
