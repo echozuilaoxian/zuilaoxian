@@ -16,6 +16,12 @@ $html_head='<!DOCTYPE html>
 	<style>
 		.container{max-width:950px;}
 		.modal-body img{max-width:100%;}
+		.gopage input {
+			height: 100%;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			width: 4em;
+		}
 	</style>
 </head>
 <body>
