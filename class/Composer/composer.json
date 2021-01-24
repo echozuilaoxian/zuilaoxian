@@ -1,6 +1,7 @@
 {
     "require": {
-        "php-curl-class/php-curl-class": "^8.8",
-        "jaeger/querylist": "4.1.1"
+        "jaeger/querylist-absolute-url": "^4.0",
+        "php-curl-class/php-curl-class": "^8.9",
+        "jaeger/querylist": "~V4.0.0"
     }
 }

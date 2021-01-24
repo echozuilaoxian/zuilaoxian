@@ -67,18 +67,18 @@ $url="https://www.tupianzj.com/".base64_decode($id);
 	$html.="<h3>{$title}</h3>\n<hr>\n";
 
 	$html.='
-		<ul class="thumbnails" id="gallery">
+		<li class="list-group-item">
 	';		
 		foreach($img as $row){
 			if ($row){
 				if (stripos($row,"http://")!==0){$row="{$row}";}
 				$html.='
-				<li class="span3"><img alt="" src="'.$row.'"></li>
+				<img alt="" src="'.$row.'" style=\"width:100%;max-width:400px;>
 				';
 			}
 		}
 	$html.='
-		</ul>
+		</li>
 	';
 $apistr['msg']=['title'=>$title,'count'=>$page];
 $apistr['img']=$img;

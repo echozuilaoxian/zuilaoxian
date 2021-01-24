@@ -1,17 +1,17 @@
 [
     {
         "name": "cache/adapter-common",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-cache/adapter-common.git",
-            "reference": "6320bb5f5574cb88438059b59f8708da6b6f1d32"
+            "reference": "6b87c5cbdf03be42437b595dbe5de8e97cd1d497"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-cache/adapter-common/zipball/6320bb5f5574cb88438059b59f8708da6b6f1d32",
-            "reference": "6320bb5f5574cb88438059b59f8708da6b6f1d32",
+            "url": "https://api.github.com/repos/php-cache/adapter-common/zipball/6b87c5cbdf03be42437b595dbe5de8e97cd1d497",
+            "reference": "6b87c5cbdf03be42437b595dbe5de8e97cd1d497",
             "shasum": "",
             "mirrors": [
                 {
@@ -22,7 +22,7 @@
         },
         "require": {
             "cache/tag-interop": "^1.0",
-            "php": "^5.6 || ^7.0",
+            "php": "^5.6 || ^7.0 || ^8.0",
             "psr/cache": "^1.0",
             "psr/log": "^1.0",
             "psr/simple-cache": "^1.0"
@@ -31,7 +31,7 @@
             "cache/integration-tests": "^0.16",
             "phpunit/phpunit": "^5.7.21"
         },
-        "time": "2018-07-08T13:04:33+00:00",
+        "time": "2020-12-14T12:17:39+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -57,7 +57,7 @@
             {
                 "name": "Tobias Nyholm",
                 "email": "tobias.nyholm@gmail.com",
-                "homepage": "https://github.com/Nyholm"
+                "homepage": "https://github.com/nyholm"
             }
         ],
         "description": "Common classes for PSR-6 adapters",
@@ -70,17 +70,17 @@
     },
     {
         "name": "cache/filesystem-adapter",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-cache/filesystem-adapter.git",
-            "reference": "d50680b6dabbe39f9831f5fc9efa61c09d936017"
+            "reference": "1501ca71502f45114844824209e6a41d87afb221"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-cache/filesystem-adapter/zipball/d50680b6dabbe39f9831f5fc9efa61c09d936017",
-            "reference": "d50680b6dabbe39f9831f5fc9efa61c09d936017",
+            "url": "https://api.github.com/repos/php-cache/filesystem-adapter/zipball/1501ca71502f45114844824209e6a41d87afb221",
+            "reference": "1501ca71502f45114844824209e6a41d87afb221",
             "shasum": "",
             "mirrors": [
                 {
@@ -92,22 +92,23 @@
         "require": {
             "cache/adapter-common": "^1.0",
             "league/flysystem": "^1.0",
-            "php": "^5.6 || ^7.0",
+            "php": "^5.6 || ^7.0 || ^8.0",
             "psr/cache": "^1.0",
             "psr/simple-cache": "^1.0"
         },
         "provide": {
-            "psr/cache-implementation": "^1.0"
+            "psr/cache-implementation": "^1.0",
+            "psr/simple-cache-implementation": "^1.0"
         },
         "require-dev": {
             "cache/integration-tests": "^0.16",
             "phpunit/phpunit": "^5.7.21"
         },
-        "time": "2017-07-16T21:09:25+00:00",
+        "time": "2020-12-14T12:17:39+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.0-dev"
+                "dev-master": "1.1-dev"
             }
         },
         "installation-source": "dist",
@@ -132,7 +133,7 @@
             {
                 "name": "Tobias Nyholm",
                 "email": "tobias.nyholm@gmail.com",
-                "homepage": "https://github.com/Nyholm"
+                "homepage": "https://github.com/nyholm"
             }
         ],
         "description": "A PSR-6 cache implementation using filesystem. This implementation supports tags",
@@ -146,17 +147,17 @@
     },
     {
         "name": "cache/tag-interop",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-cache/tag-interop.git",
-            "reference": "c7496dd81530f538af27b4f2713cde97bc292832"
+            "reference": "909a5df87e698f1665724a9e84851c11c45fbfb9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-cache/tag-interop/zipball/c7496dd81530f538af27b4f2713cde97bc292832",
-            "reference": "c7496dd81530f538af27b4f2713cde97bc292832",
+            "url": "https://api.github.com/repos/php-cache/tag-interop/zipball/909a5df87e698f1665724a9e84851c11c45fbfb9",
+            "reference": "909a5df87e698f1665724a9e84851c11c45fbfb9",
             "shasum": "",
             "mirrors": [
                 {
@@ -166,14 +167,14 @@
             ]
         },
         "require": {
-            "php": "^5.5 || ^7.0",
+            "php": "^5.5 || ^7.0 || ^8.0",
             "psr/cache": "^1.0"
         },
-        "time": "2017-03-13T09:14:27+00:00",
+        "time": "2020-12-04T14:11:04+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.0-dev"
+                "dev-master": "1.1-dev"
             }
         },
         "installation-source": "dist",
@@ -190,7 +191,7 @@
             {
                 "name": "Tobias Nyholm",
                 "email": "tobias.nyholm@gmail.com",
-                "homepage": "https://github.com/Nyholm"
+                "homepage": "https://github.com/nyholm"
             },
             {
                 "name": "Nicolas Grekas",
@@ -199,7 +200,7 @@
             }
         ],
         "description": "Framework interoperable interfaces for tags",
-        "homepage": "http://www.php-cache.com/en/latest/",
+        "homepage": "https://www.php-cache.com/en/latest/",
         "keywords": [
             "cache",
             "psr",
@@ -284,17 +285,17 @@
     },
     {
         "name": "guzzlehttp/promises",
-        "version": "v1.3.1",
-        "version_normalized": "1.3.1.0",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/promises.git",
-            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+            "reference": "60d379c243457e073cff02bc323a2a86cb355631"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+            "url": "https://api.github.com/repos/guzzle/promises/zipball/60d379c243457e073cff02bc323a2a86cb355631",
+            "reference": "60d379c243457e073cff02bc323a2a86cb355631",
             "shasum": "",
             "mirrors": [
                 {
@@ -304,12 +305,12 @@
             ]
         },
         "require": {
-            "php": ">=5.5.0"
+            "php": ">=5.5"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.0"
+            "symfony/phpunit-bridge": "^4.4 || ^5.1"
         },
-        "time": "2016-12-20T10:07:11+00:00",
+        "time": "2020-09-30T07:37:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -343,17 +344,17 @@
     },
     {
         "name": "guzzlehttp/psr7",
-        "version": "1.6.1",
-        "version_normalized": "1.6.1.0",
+        "version": "1.7.0",
+        "version_normalized": "1.7.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+            "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
-            "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/53330f47520498c0ae1f61f7e2c90f55690c06a3",
+            "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3",
             "shasum": "",
             "mirrors": [
                 {
@@ -372,16 +373,16 @@
         },
         "require-dev": {
             "ext-zlib": "*",
-            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.10"
         },
         "suggest": {
-            "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+            "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
         },
-        "time": "2019-07-01T23:21:34+00:00",
+        "time": "2020-09-30T07:37:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.6-dev"
+                "dev-master": "1.7-dev"
             }
         },
         "installation-source": "dist",
@@ -422,17 +423,17 @@
     },
     {
         "name": "jaeger/g-http",
-        "version": "V1.6.0",
-        "version_normalized": "1.6.0.0",
+        "version": "V1.7.1",
+        "version_normalized": "1.7.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jae-jae/GHttp.git",
-            "reference": "eb34d266a07c687aef45087370ef47d48321bd2e"
+            "reference": "611cfa6986be53d580b19472f10efaa4dde38a80"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jae-jae/GHttp/zipball/eb34d266a07c687aef45087370ef47d48321bd2e",
-            "reference": "eb34d266a07c687aef45087370ef47d48321bd2e",
+            "url": "https://api.github.com/repos/jae-jae/GHttp/zipball/611cfa6986be53d580b19472f10efaa4dde38a80",
+            "reference": "611cfa6986be53d580b19472f10efaa4dde38a80",
             "shasum": "",
             "mirrors": [
                 {
@@ -443,9 +444,9 @@
         },
         "require": {
             "cache/filesystem-adapter": "^1.0",
-            "guzzlehttp/guzzle": "^6.2"
+            "guzzlehttp/guzzle": "^6.0 | ^7.0"
         },
-        "time": "2018-12-12T04:21:15+00:00",
+        "time": "2020-10-26T01:52:47+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -467,17 +468,17 @@
     },
     {
         "name": "jaeger/phpquery-single",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "0.9.9",
+        "version_normalized": "0.9.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jae-jae/phpQuery-single.git",
-            "reference": "fb80b4a0e5a337438d26e061ec3fb725c9f2a116"
+            "reference": "6c12e3a1648dc619f16920f96082f397d74e0127"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jae-jae/phpQuery-single/zipball/fb80b4a0e5a337438d26e061ec3fb725c9f2a116",
-            "reference": "fb80b4a0e5a337438d26e061ec3fb725c9f2a116",
+            "url": "https://api.github.com/repos/jae-jae/phpQuery-single/zipball/6c12e3a1648dc619f16920f96082f397d74e0127",
+            "reference": "6c12e3a1648dc619f16920f96082f397d74e0127",
             "shasum": "",
             "mirrors": [
                 {
@@ -489,7 +490,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2019-11-05T01:50:34+00:00",
+        "time": "2017-12-07T02:13:37+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -518,17 +519,17 @@
     },
     {
         "name": "jaeger/querylist",
-        "version": "V4.1.1",
-        "version_normalized": "4.1.1.0",
+        "version": "V4.0.4",
+        "version_normalized": "4.0.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jae-jae/QueryList.git",
-            "reference": "46f564bc8b1a22b5dca7cd690b4af76e919b39f7"
+            "reference": "1c2e3f4adfba912c69dec33d16bc5797d7efbe27"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jae-jae/QueryList/zipball/46f564bc8b1a22b5dca7cd690b4af76e919b39f7",
-            "reference": "46f564bc8b1a22b5dca7cd690b4af76e919b39f7",
+            "url": "https://api.github.com/repos/jae-jae/QueryList/zipball/1c2e3f4adfba912c69dec33d16bc5797d7efbe27",
+            "reference": "1c2e3f4adfba912c69dec33d16bc5797d7efbe27",
             "shasum": "",
             "mirrors": [
                 {
@@ -539,15 +540,14 @@
         },
         "require": {
             "jaeger/g-http": "^1.1",
-            "jaeger/phpquery-single": "^1",
+            "jaeger/phpquery-single": "^0.9",
             "php": ">=7.0",
             "tightenco/collect": "^5"
         },
         "require-dev": {
-            "phpunit/phpunit": "^7.5",
             "symfony/var-dumper": "^3.3"
         },
-        "time": "2019-02-22T07:33:54+00:00",
+        "time": "2018-10-15T10:52:12+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -572,6 +572,54 @@
             "phpQuery",
             "spider"
         ]
+    },
+    {
+        "name": "jaeger/querylist-absolute-url",
+        "version": "4.0.1",
+        "version_normalized": "4.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jae-jae/QueryList-AbsoluteUrl.git",
+            "reference": "0c7a5677ccfca959ee353cbc3b19472dc9e9739f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jae-jae/QueryList-AbsoluteUrl/zipball/0c7a5677ccfca959ee353cbc3b19472dc9e9739f",
+            "reference": "0c7a5677ccfca959ee353cbc3b19472dc9e9739f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "pguardiario/phpuri": "^1.0",
+            "php": ">=7.0"
+        },
+        "require-dev": {
+            "jaeger/querylist": "dev-master"
+        },
+        "time": "2017-12-22T07:36:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "QL\\Ext\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jaeger",
+                "email": "JaegerCode@gmail.com"
+            }
+        ],
+        "description": "QueryList Plugin: Converting relative urls to absolute.QueryList插件:转换URL相对路径到绝对路径."
     },
     {
         "name": "league/flysystem",
@@ -667,17 +715,17 @@
     },
     {
         "name": "paragonie/random_compat",
-        "version": "v9.99.99",
-        "version_normalized": "9.99.99.0",
+        "version": "v9.99.100",
+        "version_normalized": "9.99.100.0",
         "source": {
             "type": "git",
             "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95"
+            "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
-            "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
+            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
+            "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
             "shasum": "",
             "mirrors": [
                 {
@@ -687,7 +735,7 @@
             ]
         },
         "require": {
-            "php": "^7"
+            "php": ">= 7"
         },
         "require-dev": {
             "phpunit/phpunit": "4.*|5.*",
@@ -696,7 +744,7 @@
         "suggest": {
             "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
         },
-        "time": "2018-07-02T15:55:56+00:00",
+        "time": "2020-10-15T08:29:30+00:00",
         "type": "library",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
@@ -719,18 +767,50 @@
         ]
     },
     {
-        "name": "php-curl-class/php-curl-class",
-        "version": "8.8.0",
-        "version_normalized": "8.8.0.0",
+        "name": "pguardiario/phpuri",
+        "version": "1.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/php-curl-class/php-curl-class.git",
-            "reference": "180273b577148090a62bb7333201d17e0b6efb75"
+            "url": "https://github.com/monkeysuffrage/phpuri.git",
+            "reference": "ad0a5ec033fe616cfef55578b9c7f2458be8fbfc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/180273b577148090a62bb7333201d17e0b6efb75",
-            "reference": "180273b577148090a62bb7333201d17e0b6efb75",
+            "url": "https://api.github.com/repos/monkeysuffrage/phpuri/zipball/ad0a5ec033fe616cfef55578b9c7f2458be8fbfc",
+            "reference": "ad0a5ec033fe616cfef55578b9c7f2458be8fbfc",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "time": "2015-05-24T09:13:17+00:00",
+        "type": "project",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "phpuri.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "description": "A php library for converting relative urls to absolute."
+    },
+    {
+        "name": "php-curl-class/php-curl-class",
+        "version": "8.9.0",
+        "version_normalized": "8.9.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-curl-class/php-curl-class.git",
+            "reference": "a40cc77eb45bc6489240415197734ca747ce4820"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/a40cc77eb45bc6489240415197734ca747ce4820",
+            "reference": "a40cc77eb45bc6489240415197734ca747ce4820",
             "shasum": "",
             "mirrors": [
                 {
@@ -751,7 +831,7 @@
         "suggest": {
             "ext-mbstring": "*"
         },
-        "time": "2020-04-20T03:39:57+00:00",
+        "time": "2020-11-01T03:47:32+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1066,17 +1146,17 @@
     },
     {
         "name": "symfony/polyfill-intl-idn",
-        "version": "v1.18.1",
-        "version_normalized": "1.18.1.0",
+        "version": "v1.19.0",
+        "version_normalized": "1.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-intl-idn.git",
-            "reference": "5dcab1bc7146cf8c1beaa4502a3d9be344334251"
+            "reference": "4ad5115c0f5d5172a9fe8147675ec6de266d8826"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/5dcab1bc7146cf8c1beaa4502a3d9be344334251",
-            "reference": "5dcab1bc7146cf8c1beaa4502a3d9be344334251",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/4ad5115c0f5d5172a9fe8147675ec6de266d8826",
+            "reference": "4ad5115c0f5d5172a9fe8147675ec6de266d8826",
             "shasum": "",
             "mirrors": [
                 {
@@ -1094,11 +1174,11 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2020-08-04T06:02:08+00:00",
+        "time": "2020-10-21T09:57:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.18-dev"
+                "dev-main": "1.19-dev"
             },
             "thanks": {
                 "name": "symfony/polyfill",
@@ -1159,17 +1239,17 @@
     },
     {
         "name": "symfony/polyfill-intl-normalizer",
-        "version": "v1.18.1",
-        "version_normalized": "1.18.1.0",
+        "version": "v1.19.0",
+        "version_normalized": "1.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-            "reference": "37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e"
+            "reference": "8db0ae7936b42feb370840cf24de1a144fb0ef27"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e",
-            "reference": "37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/8db0ae7936b42feb370840cf24de1a144fb0ef27",
+            "reference": "8db0ae7936b42feb370840cf24de1a144fb0ef27",
             "shasum": "",
             "mirrors": [
                 {
@@ -1184,11 +1264,11 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2020-07-14T12:35:20+00:00",
+        "time": "2020-10-23T09:01:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.18-dev"
+                "dev-main": "1.19-dev"
             },
             "thanks": {
                 "name": "symfony/polyfill",
@@ -1248,17 +1328,17 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.18.1",
-        "version_normalized": "1.18.1.0",
+        "version": "v1.19.0",
+        "version_normalized": "1.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a"
+            "reference": "b5f7b932ee6fa802fc792eabd77c4c88084517ce"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
-            "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b5f7b932ee6fa802fc792eabd77c4c88084517ce",
+            "reference": "b5f7b932ee6fa802fc792eabd77c4c88084517ce",
             "shasum": "",
             "mirrors": [
                 {
@@ -1273,11 +1353,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2020-07-14T12:35:20+00:00",
+        "time": "2020-10-23T09:01:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.18-dev"
+                "dev-main": "1.19-dev"
             },
             "thanks": {
                 "name": "symfony/polyfill",
@@ -1333,17 +1413,17 @@
     },
     {
         "name": "symfony/polyfill-php70",
-        "version": "v1.18.1",
-        "version_normalized": "1.18.1.0",
+        "version": "v1.19.0",
+        "version_normalized": "1.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php70.git",
-            "reference": "0dd93f2c578bdc9c72697eaa5f1dd25644e618d3"
+            "reference": "3fe414077251a81a1b15b1c709faf5c2fbae3d4e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/0dd93f2c578bdc9c72697eaa5f1dd25644e618d3",
-            "reference": "0dd93f2c578bdc9c72697eaa5f1dd25644e618d3",
+            "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/3fe414077251a81a1b15b1c709faf5c2fbae3d4e",
+            "reference": "3fe414077251a81a1b15b1c709faf5c2fbae3d4e",
             "shasum": "",
             "mirrors": [
                 {
@@ -1356,11 +1436,11 @@
             "paragonie/random_compat": "~1.0|~2.0|~9.99",
             "php": ">=5.3.3"
         },
-        "time": "2020-07-14T12:35:20+00:00",
+        "time": "2020-10-23T09:01:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.18-dev"
+                "dev-main": "1.19-dev"
             },
             "thanks": {
                 "name": "symfony/polyfill",
@@ -1418,17 +1498,17 @@
     },
     {
         "name": "symfony/polyfill-php72",
-        "version": "v1.18.1",
-        "version_normalized": "1.18.1.0",
+        "version": "v1.19.0",
+        "version_normalized": "1.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php72.git",
-            "reference": "639447d008615574653fb3bc60d1986d7172eaae"
+            "reference": "beecef6b463b06954638f02378f52496cb84bacc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/639447d008615574653fb3bc60d1986d7172eaae",
-            "reference": "639447d008615574653fb3bc60d1986d7172eaae",
+            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/beecef6b463b06954638f02378f52496cb84bacc",
+            "reference": "beecef6b463b06954638f02378f52496cb84bacc",
             "shasum": "",
             "mirrors": [
                 {
@@ -1440,11 +1520,11 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2020-07-14T12:35:20+00:00",
+        "time": "2020-10-23T09:01:57+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.18-dev"
+                "dev-main": "1.19-dev"
             },
             "thanks": {
                 "name": "symfony/polyfill",
@@ -1499,17 +1579,17 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v3.4.43",
-        "version_normalized": "3.4.43.0",
+        "version": "v3.4.47",
+        "version_normalized": "3.4.47.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "276cdd86063d42f9468cd26dab32daf546765050"
+            "reference": "0719f6cf4633a38b2c1585140998579ce23b4b7d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/276cdd86063d42f9468cd26dab32daf546765050",
-            "reference": "276cdd86063d42f9468cd26dab32daf546765050",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0719f6cf4633a38b2c1585140998579ce23b4b7d",
+            "reference": "0719f6cf4633a38b2c1585140998579ce23b4b7d",
             "shasum": "",
             "mirrors": [
                 {
@@ -1534,13 +1614,8 @@
             "ext-intl": "To show region name in time zone dump",
             "ext-symfony_debug": ""
         },
-        "time": "2020-06-22T14:59:03+00:00",
+        "time": "2020-10-24T10:57:07+00:00",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.4-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "files": [
@@ -1594,12 +1669,12 @@
         "version_normalized": "5.5.49.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/tightenco/collect.git",
+            "url": "https://github.com/tighten/collect.git",
             "reference": "79e6bbf22da0e685c8122030374e5db953750b3b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tightenco/collect/zipball/79e6bbf22da0e685c8122030374e5db953750b3b",
+            "url": "https://api.github.com/repos/tighten/collect/zipball/79e6bbf22da0e685c8122030374e5db953750b3b",
             "reference": "79e6bbf22da0e685c8122030374e5db953750b3b",
             "shasum": "",
             "mirrors": [

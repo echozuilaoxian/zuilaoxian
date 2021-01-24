@@ -4,7 +4,7 @@ echo $api->head("小应用");
 echo <<<api
 <div class="alert alert-warning alert-dismissible" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-	<small>本站运行环境php70,Composer(php-curl-class,querylist4)<br/>大部分功能页面可以通过添加web_charset=json访问json数据</small>
+	<small>本站运行环境php7,Composer(php-curl-class,querylist<4.1.1)<br/>大部分功能页面可以通过在网址后添加参数web_charset=json访问json数据</small>
 </div>
 <style>
 .panel-body{
@@ -75,7 +75,7 @@ echo <<<api
 	<div class="panel panel-warning">
 		<div class="panel-heading">
 			<span data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-				<div class="panel-title"><small><span class="glyphicon glyphicon-gift"><span></small> 其他 <span class="badge">8</span></div>
+				<div class="panel-title"><small><span class="glyphicon glyphicon-gift"><span></small> 其他 <span class="badge">12</span></div>
 			</span>
 		</div>
 		<div class="panel-body">
@@ -87,6 +87,10 @@ echo <<<api
 			<li><a href="/chengyu">成语大全</a></li>
 			<li><a href="/pianfang">民间偏方</a></li>
 			<li><a href="/baike">百科问答</a></li>
+			<li><a href="/mymj">名言名句</a></li>
+			<li><a href="/raokouling">绕口令</a></li>
+			<li><a href="/yanyu">谚语</a></li>
+			<li><a href="/shengjing">圣经</a></li>
 		</div>
 		<div id="collapse3" class="list-group panel-collapse collapse in">
 		</div>

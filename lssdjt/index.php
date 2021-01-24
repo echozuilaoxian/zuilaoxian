@@ -1,8 +1,7 @@
 <?php
 require '../config.php';
 $db = new DBUtils();
-$db -> instance('../db/lssdjt.db');
-/*图片包过大已删除*/
+$db -> instance('../db/lssdjt.db3');
 $month=isset($_GET['month'])?$_GET['month']:date("n");
 $day=isset($_GET['day'])?$_GET['day']:date("j");
 $time_y=mktime(0,0,0,$month ,$day-1,date('Y'));
@@ -17,7 +16,10 @@ $sql="SELECT * FROM Content where 月={$month} and 日={$day} order by 年 desc"
 $result=$db->queryList($sql);
 $str['msg']=array("count"=>count($result),"month"=>$month,"day"=>$day);
 foreach ($result as $row){
-	$str['list'][]=array("id"=>$row['Id'],"title"=>$row['标题'],"year"=>$row['年']);
+	$img=$api->cutstr($row['内容'],'src=\"','\"');
+	if (!$img) $img='noimage.jpeg';
+	$str['list'][]=array("id"=>$row['Id'],"title"=>$row['标题'],"year"=>$row['年'],'img'=>$img);
+	
 }
 
 
@@ -41,9 +43,10 @@ foreach ($str["list"] as $i => $row){
 $html.=<<<api
 
   <div class="media">
-    <div class="media-left media-middle">
+    <div class="media-left">
+		<img src="{$row["img"]}" class="media-object" style="width:120px">
     </div>
-    <div class="media-body">
+    <div class="media-body media-middle">
       <a href="v.php?id={$row["id"]}" id="{$row["id"]}" title="{$row["title"]}">
 		<h4 class="media-heading">{$row["year"]}年:{$row["title"]}</h4>
 	  </a>

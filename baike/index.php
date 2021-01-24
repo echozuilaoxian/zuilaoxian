@@ -66,9 +66,19 @@ api;
 
 
 $count_sql="SELECT count(*) FROM [content]";
-if($word and !$list) $count_sql.=" where tmnr like '%".$word."%'";
-if($list and !$word) $count_sql.=" where kind=".$list;
-if($word and $list) $count_sql.=" where tmnr like '%".$word."%' and kind=".$list;
+$gopage="?";
+if($word and !$list){
+	$count_sql.=" where tmnr like '%".$word."%'";
+	$gopage='?word='.$word.'&';
+}
+if($list and !$word){
+	$count_sql.=" where kind=".$list;
+	$gopage='?list='.$list.'&';
+}
+if($word and $list){
+	$count_sql.=" where tmnr like '%".$word."%' and kind=".$list;
+	$gopage='?word='.$word.'&list='.$list.'&';
+}
 
 //
 $count=$db->querySingle($count_sql);
@@ -78,7 +88,7 @@ $zhizhen=$pagesize*($page-1);
 $result=$db->queryList(str_replace('count(*)','*',$count_sql)." LIMIT $zhizhen,$pagesize");
 $apistr['msg']=array("name"=>$title,"count"=>$count,"pageall"=>$pagecount,"page"=>$page,"keyword"=>$word);
 
-$gopage=$word?"?word=".$word."&":"?";
+
 $html.=$api->page($count,$pagecount,$pagesize,$page,$gopage);
 foreach($result as $row){
 	$apistr['list'][]=["id"=>$row['tmxh'],"title"=>$row["tmnr"],"tmlx"=>$row["tmlx"],"kind"=>$row['kind'],"tmda1"=>$row['tmda1'],"tmda2"=>$row['tmda2'],"tmda3"=>$row['tmda3'],"tmda4"=>$row['tmda4'],"tmda5"=>$row['tmda5'],"tmda6"=>$row['tmda6'],"tmda"=>$row['tmda']];
