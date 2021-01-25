@@ -59,7 +59,6 @@ api;
 
 }
 
-$html.="</div><div class=\"container container-small\">";
 $html.=<<<api
 <script>
 ;!function(){

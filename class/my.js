@@ -38,32 +38,6 @@ $(function () {
 		$('.modal-title').html('');
 		$('.modal-body').html('');
 	})
-	//搜狗哈哈
-	$('#haha_new_box').click(function () {
-		if ($("#haha_new_box").prop("checked")){
-			$.cookie('haha_web', true, { expires: 30, path: '/' });
-			layer.msg('弹出层打开',{time:2000,anim:6});
-		}else{
-			$.cookie('haha_web', false, { expires: -1, path: '/' });
-			layer.msg('新页面打开',{time:2000,anim:6});
-		}
-	})
-	if ($.cookie('haha_web')){
-		$("#haha_new_box").prop("checked",true);
-	}else{
-		$("#haha_new_box").prop("checked",false);
-	}
-	$('a#haha').click(function () {
-		title=$(this).text();
-		id=$(this).attr('hid');
-		if ($.cookie('haha_web')){
-			$('#myModalLabel').html(title);
-			$('.modal-body').load('v.php?id='+id);
-			$('#myModal').modal('show');
-		}else{
-			window.location.href="index1.php?id="+id;
-		}
-	})
 	//qq头像获取
 	$("#trash").hide();//清除输入框按钮隐藏
 	$("#get_data").click(function(){

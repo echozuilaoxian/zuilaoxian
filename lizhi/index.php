@@ -3,6 +3,7 @@ require '../config.php';
 
 $db_pdo=new mysqlpdo($mysql_config);
 $types=array(
+	array('list'=>'','title'=>'全部'),
 	array('list'=>'lizhiwenzhang','title'=>'励志文章'),
 	array('list'=>'lizhigushi','title'=>'励志故事'),
 	array('list'=>'lizhimingyan','title'=>'励志名言'),
@@ -29,8 +30,7 @@ $types=array(
 	array('list'=>'ganenlizhi','title'=>'感悟亲情'),
 	array('list'=>'shanggan','title'=>'伤感日志'),
 	array('list'=>'lizhishuji','title'=>'励志书籍'),
-	array('list'=>'lizhishige','title'=>'励志诗歌'),
-	array('list'=>'lizhijiangxuejin','title'=>'励志奖学金')
+	array('list'=>'lizhishige','title'=>'励志诗歌')
 );
 
 function get_type($list){

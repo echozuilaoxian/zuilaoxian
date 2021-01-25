@@ -61,7 +61,7 @@ if (!$datahtml){
 			"msg"=>true,
 			"page"=>$page,
 			"pagesize"=>$pagesize,
-			"count"=>count($data),
+			"count"=>count($data)*$pagecount,
 			"pagecount"=>$pagecount
 		);
 	foreach($data as $i => $row){
@@ -83,10 +83,8 @@ if (!$datahtml){
 //输出
 $html=$api->head("小视频");
 $html.=<<<api
-<pre>json页面:<a href="{$thisurl}web_charset=json{$query_string}">{$thisurl}web_charset=json{$query_string}</a></pre>
 <div class="well well-sm">弹出层打开视频 <input type="checkbox" id="haha_new_box" name="haha_new_box" value="弹出层打开视频" checked="checked" /></div>
 api;
-
 if ($str["msg"]){
 $html.=$api->page($str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
 	foreach ($str["list"] as $i => $row){
@@ -97,7 +95,7 @@ $html.=<<<api
 			<img src="{$row['img']}" class="media-object" style="width:200px">
 		</div>
 		<div class="media-body">
-			<a id="haha" hid="{$row['id']}" data-loading-text="Loading..." type="button">
+			<a href="v.php?id={$row['id']}" id="{$row['id']}" data-loading-text="Loading..." type="button">
 			<h4 class="media-heading">{$row['title']}</h4>
 			</a>
 		</div>
@@ -107,8 +105,58 @@ api;
 }
 $html.=$api->page($str['count'],$str['pagecount'],$str['pagesize'],$page,"?");
 
+$html.=<<<api
+<script>
+;!function(){
+	//搜狗哈哈
+	$('#haha_new_box').click(function () {
+		if ($("#haha_new_box").prop("checked")){
+			$.cookie('haha_web', true, { expires: 30, path: '/' });
+			layer.msg('弹出层打开',{time:2000,anim:6});
+		}else{
+			$.cookie('haha_web', false, { expires: -1, path: '/' });
+			layer.msg('新页面打开',{time:2000,anim:6});
+		}
+	})
+	if ($.cookie('haha_web')){
+		$("#haha_new_box").prop("checked",true);
+	}else{
+		$("#haha_new_box").prop("checked",false);
+	}
+	$('.media-body a').click(function (event) {
+		if ($.cookie('haha_web')){
+			event.preventDefault();
+		}else{
+			return;
+		}
+		layer.msg('加载中，请稍后',{time: 1200,anim:6})
+		id=$(this).attr('id');
+		$.ajax({
+			url:'v.php',
+			type:'get',
+			data:{
+				web_charset:"json",
+				id:id
+				},
+			timeout:'15000',
+			async:true,
+			dataType:'json',
+				success:function(data){
+					layer.closeAll();
+					if (data.msg){
+						$('#myModalLabel').html(data.title)
+						$('.modal-body').html(data.html)
+						$('#myModal').modal('show')
+					}else{
+						layer.msg('错误',{time: 1200,anim:6})
+					}
+				}
+			})
+		})
+}();
+</script>
+api;
 }else{
 	$html.="内容出错";
 }
-$html.=$api->end();
-echo $web_charset?$api->json($str):$html;
+echo $web_charset?$api->json($str):$html.$api->end();
