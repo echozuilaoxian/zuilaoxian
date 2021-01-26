@@ -12,27 +12,24 @@ function get_type($list){
 	$rs=$db->queryList("select * from type");
 	$rs=array_merge($typ1,$rs);
 	$html_type.='
-		<li class="list-group-item">
-		<ul class="breadcrumb">
-	';
+	<li class="list-group-item">
+		<ul class="breadcrumb">';
 	$title="美文";
 	foreach ($rs as $row){
 		if ($row['type']==$list){
 			$title=$row['name'];
 			$html_type.='
-			<li><a href="?list='.$row['type'].'"><font color="red">'.$row['name'].'</font></a></li>
-			';
+			<li><a href="?list='.$row['type'].'"><font color="red">'.$row['name'].'</font></a></li>';
 		}else{
 			$html_type.='
-			<li><a href="?list='.$row['type'].'">'.$row['name'].'</a></li>
-			';
+			<li><a href="?list='.$row['type'].'">'.$row['name'].'</a></li>';
 		}
 		$str['type'][]=array("list"=>$row['type'],"title"=>$row['name']);
 
 	}
 	$html_type.='
-	</ul>
-	<form action="?" method="get" class="bs-example bs-example-form" role="form">
+		</ul>
+		<form action="?" method="get" class="bs-example bs-example-form" role="form">
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="input-group">
@@ -79,7 +76,7 @@ if (!$id){
 	if ($word){
 		$html.='
 			<li class="list-group-item">
-			搜索到'.$count.'条记录
+				搜索到'.$count.'条记录
 			</li>
 		';
 	}
@@ -90,7 +87,7 @@ if (!$id){
 		if ($word){$title=str_replace($word,"<font color=\"red\">".$word."</font>",$title);}
 		$html.= '
 		<li class="list-group-item">
-		'.$i.'.<a href="?id='.$row['id'].'">'.$title.'</a>
+			'.$i.'.<a href="?id='.$row['id'].'">'.$title.'</a>
 		</li>
 		';
 	}

@@ -139,34 +139,33 @@ class api{
 	function page($count,$pagecount,$pagesize,$page,$gopage,$str=''){
 		$pages="";
 		if ($pagecount<1) return;
-		$pages.='<li class="list-group-item">
-				<ul class="pagination">';
+		$pages.='
+	<ul class="pagination">';
 		if ($page>1) {
 			$pages.='
-				<li class="home"><a href="'.$gopage.'page=1">首页</a></li>
-				<li class="previous"><a href="'.$gopage.'page='.($page-1).'">上一页</a></li>';
+		<li class="home"><a href="'.$gopage.'page=1">首页</a></li>
+		<li class="previous"><a href="'.$gopage.'page='.($page-1).'">上页</a></li>';
 		}else{
 			$pages.='
-					<li class="home disabled"><a>首页</a></li>
-					<li class="previous disabled"><a>上一页</a></li>';
+		<li class="home disabled"><a>首页</a></li>
+		<li class="previous disabled"><a>上页</a></li>';
 		}
 		if($page>=1){
 			$pages.='
-					<li class="gopage disabled"><a><small>'.$page.'/'.$pagecount.'(共'.$count.')</small></a></li>';
+		<li class="gopage disabled"><a><small><b>'.$page.'/'.$pagecount.'</b>页('.$count.'条)</small></a></li>';
 		}
 		if ($page<$pagecount) {
 			$pages.='
-					<li class="next"><a href="'.$gopage.'page='.($page+1).'">下一页</a></li>
-					<li class="last"><a href="'.$gopage.'page='.$pagecount.'">尾页</a></li>';
+		<li class="next"><a href="'.$gopage.'page='.($page+1).'">下页</a></li>
+		<li class="last"><a href="'.$gopage.'page='.$pagecount.'">尾页</a></li>';
 		}else{
 			$pages.='
-					<li class="next disabled"><a>下一页</a></li>
-					<li class="last disabled"><a>尾页</a></li>'; 
+		<li class="next disabled"><a>下页</a></li>
+		<li class="last disabled"><a>尾页</a></li>'; 
 		}
 		$pages.='
-				</ul>
-			</li>
-			';
+	</ul>
+		';
 		if ($str){
 			$pages.="\n<div class=\"well well-sm\">\n<center>\n<form method=\"get\" action=\"?\">\n";
 			$pages.=$page."/".$pagecount."页 每页".$pagesize." 共".$count."\n";
