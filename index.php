@@ -100,11 +100,12 @@ echo <<<api
 		<div class="panel panel-danger">
 			<div class="panel-heading">
 				<span data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-					<div class="panel-title"><small><span class="glyphicon glyphicon-th-list"><span></small> 功能类 <span class="badge">5</span></div>
+					<div class="panel-title"><small><span class="glyphicon glyphicon-th-list"><span></small> 功能类 <span class="badge">6</span></div>
 				</span>
 			</div>
 			<div class="panel-body">
 				<li><a href="/ip">IP地址查询 <span class="glyphicon glyphicon-globe"><span></a></li>
+				<li><a href="/post">全国邮编查询 <span class="glyphicon glyphicon-envelope"><span></a></li>
 				<li><a href="/ewm">二维码制作 <span class="glyphicon glyphicon-qrcode"><span></a></li>
 				<li><a href="/wtp">文字转图片</a></li>
 				<li><a href="/kouzhao">给头像加个口罩</a></li>
