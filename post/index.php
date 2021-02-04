@@ -37,7 +37,7 @@ $html=$api->head("全国邮编查询").'
 					$(".modal-body").html(data.html)
 					$("#myModal").modal("show")
 				}else{
-					layer.msg("错误",{time: 1200,anim:6})
+					layer.msg("未查询到",{time: 1200,anim:6})
 				}
 			}
 		})
@@ -47,7 +47,19 @@ $html=$api->head("全国邮编查询").'
 if ($post){
 	$db = new DBUtils();
 	$db -> instance('../db/post.db3');
-	$result=$db->queryList("SELECT * FROM [post] where PostNumber like '".$post."' or  Province like '".$post."' or City or  District like '".$post."' or Address like '".$post."' or jd like '".$post."' LIMIT 30");
+	if (is_numeric($post)){
+		$result=$db->queryList("SELECT * FROM [post] where instr(PostNumber,'".$post."')>0 LIMIT 30");
+	}else{
+		$result=$db->queryList("
+								SELECT * from post where 
+								instr(Province,'".$post."')>0 or
+								instr(City,'".$post."')>0 or
+								instr(District,'".$post."')>0 or
+								instr(Address,'".$post."')>0 or
+								instr(jd,'".$post."')>0
+								GROUP BY id LIMIT 30
+								");
+	}
 	if ($result){
 		$str=[
 		'code'=>0,
@@ -58,7 +70,7 @@ if ($post){
 			$str['html'].=$r['PostNumber'].' '.$r['Province'].' '.$r['City'].' '.$r['District'].' '.$r['Address'].' '.$r['jd'].' <hr>';
 		}
 	}else{
-		$str=['code'=>1];
+		$str=['code'=>1,'err'=>'未查询到'];
 	}
 }
 echo $post?$api->json($str):$html.$api->end();

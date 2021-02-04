@@ -13,7 +13,7 @@ $html=$api->head("IP地址查询").'
 	<label for="name">'.$yourip.'</label>
 </div>
 <div class="input-group">
-	<label for="name">请输入 IP 或 域名(不包含http://和/)</label>
+	<label for="name">请输入 IP 或 域名</label>
 </div>
 <div class="input-group">
 	<span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
@@ -55,12 +55,18 @@ $html=$api->head("IP地址查询").'
 </script>
 ';
 if ($ip){
-	$get_ip=$ipaddr -> ip2addr(gethostbyname(trim($ip)));
+	$ip=trim($ip);
+	if (stristr($ip,'http')){
+		$ip=strtolower($ip);
+		$ip=parse_url($ip,PHP_URL_HOST);
+	}
+	$ip2=gethostbyname($ip);
+	$get_ip=$ipaddr -> ip2addr($ip2);
 	if ($get_ip){
 		$str=[
 		'code'=>0,
 		'title'=>'查询结果'.$ip,
-		'html'=>gethostbyname(trim($ip)).'<br>'.$get_ip['country'].'<br>'.$get_ip['area']
+		'html'=>$ip2.'<br>'.$get_ip['country'].'<br>'.$get_ip['area']
 		];
 	}else{
 		$str=['code'=>1];
