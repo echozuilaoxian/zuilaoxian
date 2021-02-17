@@ -1,12 +1,15 @@
 <?php
 require_once '../config.php';
 use QL\QueryList;
+use QL\Ext\AbsoluteUrl;
+$ql = QueryList::getInstance();
+$ql->use(AbsoluteUrl::class);
 	$type=[
 		["list"=>"xiezhen","id"=>179,"name"=>"清纯美女"],
 		["list"=>"xinggan","id"=>176,"name"=>"性感美女"],
 		["list"=>"guzhuang","id"=>177,"name"=>"古装美女"],
-		["list"=>"yishu","id"=>178,"name"=>"人体艺术"],
-		["list"=>"siwa","id"=>193,"name"=>"丝袜美女"],
+		//["list"=>"yishu","id"=>178,"name"=>"人体艺术"],
+		//["list"=>"siwa","id"=>193,"name"=>"丝袜美女"],
 		["list"=>"chemo","id"=>194,"name"=>"香车美人"]
 	];
 	$list=$_GET['list']??"xiezhen";
@@ -17,18 +20,26 @@ use QL\QueryList;
 		'cache_ttl' => 60*60*12
 		])
 		->getHtml();
+	$datahtml = $ql->html($datahtml)
+				->absoluteUrl('https://www.tupianzj.com/')
+				->gethtml();
 	$rules=array(
 		"img"=>array('img','src'),
 		"id"=>array('','href'),
 		"title"=>array('','title')
 	);
-	$range='.list_con_box_ul>li>a';
+	$range='.list_con>.list_con_box>.list_con_box_ul>li>a';
+	
+	
 	$data = QueryList::html($datahtml)
 		->rules($rules)
 		->range($range)
-		->encoding('UTF-8','GB2312')
+		->encoding('UTF-8','GBK')
 		->removeHead()
 		->queryData();
+	
+		
+		
 	$page_count=QueryList::html($datahtml)->find(".pageinfo>strong:eq(0)")->text();
 	$type_h="<ul class=\"breadcrumb\">\n";
 	$title='';
@@ -52,10 +63,10 @@ use QL\QueryList;
 		$title=$index["title"];
 		$html.='
 			<div class="media">
-				<div class="media-left media-middle">
+				<div class="media-left">
 					<img src="'.$pic.'" class="media-object" style="width:120px">
 				</div>
-				<div class="media-body">
+				<div class="media-body media-middle">
 					<a href="view.php?id='.$id.'">
 						<h4 class="media-heading">'.$title.'</h4>
 					</a>

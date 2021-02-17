@@ -4,7 +4,7 @@ use GuzzleHttp\Psr7\Response;
 use QL\QueryList;
 $id=$_GET['id']??NULL;
 if (!$id){exit($api->msg("id错误","id错误","danger"));}
-$url="https://www.tupianzj.com/".base64_decode($id);
+$url=base64_decode($id);
 	$datahtml = QueryList::get($url,null,[
 		'cache' => $huan_path,
 		'cache_ttl' => 60*60*12
@@ -21,7 +21,7 @@ $url="https://www.tupianzj.com/".base64_decode($id);
 		->range($range)
 		->encoding('UTF-8')
 		->removeHead()
-		->queryData()[0];
+		->queryData();
 	$title=$data['title'];
 	$page=$api->cutstr($data['pages'],'共','页');
 	$img[]=$data['img'];
@@ -47,7 +47,7 @@ $url="https://www.tupianzj.com/".base64_decode($id);
 		// HTTP success回调函数
 		->success(function (QueryList $ql, Response $response, $index){
 			global $img;
-			$img[]= $ql->queryData()[0]['img'];
+			$img[]= $ql->queryData()['img'];
 		})
 		// HTTP error回调函数
 		->error(function (QueryList $ql, $reason, $index){
@@ -58,27 +58,26 @@ $url="https://www.tupianzj.com/".base64_decode($id);
 
 	$html.=$api->head($title);
 	$html.='
-			<ul class="breadcrumb">
-				<li><a href="/">网站首页</a></li>
-				<li><a href="./">美女图片</a></li>
-				<li>'.$title.'</li>
-			</ul>
+	<ul class="breadcrumb">
+		<li><a href="/">网站首页</a></li>
+		<li><a href="./">美女图片</a></li>
+		<li>'.$title.'</li>
+	</ul>
 	';
-	$html.="<h3>{$title}</h3>\n<hr>\n";
+	$html.='<h3>'.$title.'</h3>
+	<hr>';
 
 	$html.='
-		<li class="list-group-item">
-	';		
-		foreach($img as $row){
-			if ($row){
-				if (stripos($row,"http://")!==0){$row="{$row}";}
-				$html.='
-				<img alt="" src="'.$row.'" style=\"width:100%;max-width:400px;>
-				';
-			}
+	<li class="list-group-item">';		
+	foreach($img as $row){
+		if ($row){
+			if (stripos($row,"http://")!==0){$row="{$row}";}
+			$html.='
+		<img alt="" src="'.$row.'" style="width:100%;max-width:400px;">';
 		}
+	}
 	$html.='
-		</li>
+	</li>
 	';
 $apistr['msg']=['title'=>$title,'count'=>$page];
 $apistr['img']=$img;

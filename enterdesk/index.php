@@ -47,17 +47,10 @@ if (!$id){
 			return $x;
 		}
 	);
-	$rules=array(
-		"pagestr"=>array('.listpages>ul>li:last a','href')
-	);
-	$data2 = QueryList::html($datahtml)
-	->rules($rules)
-	->queryData(
-		function($x)use($api,$list){
-			if (!$list){$list3="com/";}else{$list3="{$list}/";}
-			return $api->cutstr2($x['pagestr'],"{$list3}",".");
-		}
-	)[0];
+	$data2 = QueryList::html($datahtml)->find('.listpages a:last')->href;
+	$data2 =str_replace('.html','',$data2);
+	$data2 =str_replace('https://mm.enterdesk.com/','',$data2);
+	$data2 =str_replace($list.'/','',$data2);
 	//
 	$html=$api->head($title).$type_h;
 
@@ -65,10 +58,10 @@ if (!$id){
 		$apistr['lists'][]=['id'=>$index['id'],'img'=>$index['img'],'title'=>$index['title']];
 		$html.='
 		<div class="media">
-			<div class="media-left media-middle">
-				<img src="'.$index['img'].'" class="media-object" style="width:120px">
+			<div class="media-left">
+				<img src="'.$index['img'].'" class="media-object" style="width:130px">
 			</div>
-			<div class="media-body">
+			<div class="media-body media-middle">
 				<a href="?id='.$index['id'].'">
 					<h4 class="media-heading">'.$index['title'].'</h4>
 				</a>

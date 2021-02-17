@@ -30,7 +30,7 @@
 	});
 };
 $(function () {
-	setInterval(clock,100);
+	setInterval(clock,1000);
 	
 	$("[data-toggle='tooltip']").tooltip();
 	//模态框监测关闭后清除内容
@@ -122,13 +122,13 @@ function clock(){
   hour = now.getHours();
   min = now.getMinutes();
   sec = now.getSeconds();
-  msec = now.getMilliseconds();
+  //msec = now.getMilliseconds();
   month=month>9?month:"0"+month;
   day=day>9?day:"0"+day;
   hour=hour>9?hour:"0"+hour;
   min=min>9?min:"0"+min;
   sec=sec>9?sec:"0"+sec;
-  msec=Math.floor(msec/100)+1;
-  msec=msec>9?msec:"0"+msec;
-  $("#times").html(year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec +":" + msec +" "+ week);
+  //msec=Math.floor(msec/100)+1;
+  //msec=msec>9?msec:"0"+msec;
+  $("#times").html(year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec +" "+ week);
 }

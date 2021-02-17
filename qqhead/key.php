@@ -1,6 +1,6 @@
 <?php
-require_once("../config.php");
-$qq=isset($_POST['send_data'])?$_POST['send_data']:NULL;
+require '../config.php';
+$qq=$_POST['send_data']??NULL;
 use \Curl\Curl;
 $curl = new Curl();
 
